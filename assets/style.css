@@ -1,0 +1,38 @@
+body{font-size: 14px;margin: 0;}
+h2{margin: 0;font-size: 2em;}
+.hide{display: none;}
+.bg{background: #EEE;opacity: .4;z-index: 4;}
+.btn{background: #FF8F00;padding: 0 40px;line-height: 80px;display: inline-block;cursor: pointer;margin-left: 10px;color: #FFF;font-size: 2em;}
+    .btn:hover{background: #666;}
+.films{margin: 0 auto;}
+    .films .fitem {width: 240px;height: 320px;float: left;cursor: pointer;}
+        .films .fitem .inner{position: relative;width: 220px;height: 300px;overflow: hidden;margin: 10px;background: #000;overflow: hidden;}
+            .films .fitem .inner img{height: 320px;position: absolute;left: -180px;top:0;z-index: 0;}
+            .films .fitem .inner .name{position: absolute;bottom: 0;left: 0;z-index: 1;width: 220px;text-align: center;background: #EEE;opacity: 0.8;padding: 5px 0;}
+
+.film-detail-bg{background: #000;opacity: .9;z-index: 2;position: fixed;top: 0;left: 0;height: 100%;}
+.film-detail{z-index: 3;position: fixed;color: #FFF;text-align: center;}
+    .film-detail h1{margin-bottom: 30px;}
+        .film-detail .close{background: #6B0000;color: #FFF;border-radius: 25px;position: absolute;right: 0px;top: 0px;display: inline-block;width: 50px;height: 50px;text-align: center;line-height: 50px;font-size: 2em;cursor: pointer;}
+
+.tool{position: fixed;left: 0;right: 0;bottom: 0;height: 100px;z-index: 5;}
+    .tool .inner {position: relative;margin-top: 10px;}
+        .tool .inner .volume_area{float: right;}
+            .tool .inner .volume_area .label{color: #7b7b7b;display: inline-block;font-size: 16px;height: 20px;line-height: 20px;float: left;cursor: pointer;}
+                .tool .inner .volume_area .label.selected{text-decoration:line-through;}
+            .tool .inner .volume_area .num{display: inline-block;height: 20px;float: left;margin-left: 10px;}
+                .tool .inner .volume_area .num i{display: inline-block;width: 10px;background-color: #2e2e2e;height: 20px;cursor: pointer;}
+                    .tool .volume_area .num i.selected{background: #FF8F00;}
+        .tool .inner .play-btn{float: left;}
+        .tool .inner .time{height: 28px;line-height: 80px;display: inline-block;text-align: right;font-weight: bold;float: right;margin-right: 10px;font-size: 1.5em;}
+
+.inputarea{position: fixed;left: 0;right: 0;top: 0;height: 100px;z-index: 5;text-align: center;}
+    .inputarea input{width: 350px;height: 80px;line-height: 80px;font-size: 2.5em;margin-top: 10px;}
+
+.error{display: none;width: 100%;height: 100%;position: absolute;left: 0;top: 0;}
+    .error .error-bg{width: 100%;height: 100%;background: #000;opacity: 0.6;z-index: 998;position: absolute;left: 0;top: 0;}
+    .error .error-content{background: #FFF;z-index: 999;position: absolute;height: 100px;width: 250px;text-align: center;font-size: 25px;color: #ff8f00;border-radius: 5px;}
+        .error .error-content .notes{font-size: 14px;color: #666;text-align: right;padding-right: 10px;}
+
+.close-app-btn{background: #ff8f00;color: #FFF;position: fixed;z-index: 999;left: 10px;top:10px;padding:10px 15px;cursor: pointer;font-size: 16px;}
+    .close-app-btn:hover{background: #FFF; color: #ff8f00;}

@@ -69,7 +69,7 @@ var MessageChannel = function(wsURL){
 /*
 * Receiver Application state manager. This Class wrapper DIAL protocol.
 **/
-var SenderDaemon = function(deviceIp){
+var SenderDaemon = function(deviceIp, appid){
     var self = this;
     var appUrl = "",
         maxInactive = -1;
@@ -121,11 +121,13 @@ var SenderDaemon = function(deviceIp){
         }
     };
 
+    self.heartBeatLocked = false;
     /*
     * Private method, keep token alive.
     **/
     self._heartbeat = function(){
-        if(self.flingDConnected&&self.useIpc){
+        if(self.flingDConnected&&self.useIpc&&!self.heartBeatLocked){
+            self.heartBeatLocked = true;
             setTimeout(function(){
                 var serverAddress = "http://"+deviceIp+":9431/apps/"+appid,
                     headers = [
@@ -133,6 +135,7 @@ var SenderDaemon = function(deviceIp){
                         ["Authorization", self.token]
                     ];
                 self.simpleHttpRequest("GET", headers, serverAddress, null, function(responseText){
+                    self.heartBeatLocked = false;
                     self._heartbeat();
                 });
             }, self.appHeartbeatInterval-100);

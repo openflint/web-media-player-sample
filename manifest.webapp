@@ -1,15 +1,15 @@
 {
-    "name":"xplayer",
-    "description":"my first firefox app",
+    "name":"castvideo",
+    "description":"cast video for flint",
     "icons": {
-        "512": "/img/icon-512.png",
-        "128": "/img/icon-128.png",
-        "64": "/img/icon-64.png"
+        "512": "/assets/imgs/icon-512.png",
+        "128": "/assets/imgs/icon-128.png",
+        "64": "/assets/imgs/icon-64.png"
     },
     "launch_path": "/index.html",
     "developer": {
-        "name": "Your name or organization",
-        "url": "http://your-homepage-here.org"
+        "name": "cast video",
+        "url": "http://openflint.github.io/web-media-player-sample/index.htmlg"
     },
     "default_locale": "en",
     "type": "privileged",
