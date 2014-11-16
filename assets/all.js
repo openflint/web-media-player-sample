@@ -183,17 +183,17 @@ var AppManager = function(appid){
 var Protocol = function(){
     var self = this;
     self.proto_load = {
-        "namespace": "urn:x-cast:com.google.cast.media",
+        "namespace": "urn:flint:org.openflint.fling.media",
         "payload": '{"type": "LOAD", "seq": "requestId-2", "media": {"contentId": "##contentId##","contentType": "video/mp4","metadata": {"title": "##title##","subtitle": "##subtitle##"}}}'
     };
 
     self.proto_pause = {
-        "namespace": "urn:x-cast:com.google.cast.media",
+        "namespace": "urn:flint:org.openflint.fling.media",
         "payload": '{"type": "PAUSE", "seq": "requestId-4"}'
     };
 
     self.proto_play = {
-        "namespace": "urn:x-cast:com.google.cast.media",
+        "namespace": "urn:flint:org.openflint.fling.media",
         "payload": '{"type": "PLAY", "seq": "requestId-5"}'
     };
 };
