@@ -118,7 +118,7 @@ var AppManager = function(appid){
         if(msgChannel){
             msgChannel.send(data);            
         }
-    }
+    };
     self.openApp = function(){
         if(eleDongleIpInput.value!=""){
             var patrn =/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/;
@@ -138,8 +138,8 @@ var AppManager = function(appid){
                 ("onappopened" in self)&&(self.onappopened());
                 msgChannel = messageChannel;
                 msgChannel.on("message", function(jsonObject){
-                    if("data" in jsonObject){
-                        ("onmessage" in self)&&(self.onmessage(jsonObject));
+                    if("payload" in jsonObject){
+                        ("onmessage" in self)&&(self.onmessage(jsonObject.payload));
                     }
                 });
                 eleCloseAppBtn.className = "close-app-btn";
@@ -181,20 +181,20 @@ var AppManager = function(appid){
 }
 
 var Protocol = function(){
-    self = this;
+    var self = this;
     self.proto_load = {
-        "requestId": "requestId-2",
-        "data": '{"type": "LOAD","media": {"contentId": "##contentId##","contentType": "video/mp4","metadata": {"title": "##title##","subtitle": "##subtitle##"}}}'
+        "namespace": "urn:x-cast:com.google.cast.media",
+        "payload": '{"type": "LOAD", "seq": "requestId-2", "media": {"contentId": "##contentId##","contentType": "video/mp4","metadata": {"title": "##title##","subtitle": "##subtitle##"}}}'
     };
 
     self.proto_pause = {
-        "requestId": "requestId-4",
-        "data": '{"type": "PAUSE"}'
+        "namespace": "urn:x-cast:com.google.cast.media",
+        "payload": '{"type": "PAUSE", "seq": "requestId-4"}'
     };
 
     self.proto_play = {
-        "requestId": "requestId-5",
-        "data": '{"type": "PLAY"}'
+        "namespace": "urn:x-cast:com.google.cast.media",
+        "payload": '{"type": "PLAY", "seq": "requestId-5"}'
     };
 };
 
@@ -212,7 +212,7 @@ var PlayerControl = function(){
 
             videoCurrUrl = videoUrl;
             var protoLoad = new Protocol().proto_load;
-            protoLoad["data"] = protoLoad["data"].replaceAll("##contentId##",videoUrl)
+            protoLoad["payload"] = protoLoad["payload"].replaceAll("##contentId##",videoUrl)
                 .replaceAll("##title##",videoTitle)
                 .replaceAll("##subtitle##",videoSubtitle);
             console.info("--------------------------------> LOADDING");
@@ -379,28 +379,26 @@ window.onload = function(){
         receiverStatus = "ready";
     });
     window.appManager.on("message", function(msg){
-        if("data" in msg){
-            var data = JSON.parse(msg["data"]);
-            console.info("------------------------------------------------>msg data: ", data);
+        console.info("window.appManager.on message--------------------------->msg data: ", msg)
+        var data = JSON.parse(msg);
 
-            if(data["type"]=="MEDIA_STATUS"){
-                videoStatus = data["status"][0]["playerState"];
+        if(data["type"]=="MEDIA_STATUS"){
+            videoStatus = data["status"][0]["playerState"];
 
-                videoTimeTotal = data["status"][0]["duration"];
-                videoTimeCurrent = data["status"][0]["currentTime"];
+            videoTimeTotal = data["status"][0]["duration"];
+            videoTimeCurrent = data["status"][0]["currentTime"];
 
-                if(videoTimeTotal){
-                    playerControl.setTotalTimeData(videoTimeTotal);
-                }
-                if(videoTimeCurrent){
-                    playerControl.setCurrentTimeData(videoTimeCurrent);
-                }
-                if(videoStatus=="PLAYING"){
-                    playerControl.playingTimerLock = false;
-                    playerControl.playingTimer();
-                }
-                playerControl.setPlayerButtonStatus(videoStatus);
+            if(videoTimeTotal){
+                playerControl.setTotalTimeData(videoTimeTotal);
             }
+            if(videoTimeCurrent){
+                playerControl.setCurrentTimeData(videoTimeCurrent);
+            }
+            if(videoStatus=="PLAYING"){
+                playerControl.playingTimerLock = false;
+                playerControl.playingTimer();
+            }
+            playerControl.setPlayerButtonStatus(videoStatus);
         }
     });
 
