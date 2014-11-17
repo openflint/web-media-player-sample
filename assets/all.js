@@ -184,17 +184,17 @@ var Protocol = function(){
     var self = this;
     self.proto_load = {
         "namespace": "urn:flint:org.openflint.fling.media",
-        "payload": '{"type": "LOAD", "seq": "requestId-2", "media": {"contentId": "##contentId##","contentType": "video/mp4","metadata": {"title": "##title##","subtitle": "##subtitle##"}}}'
+        "payload": '{"type": "LOAD", "requestId": "requestId-2", "media": {"contentId": "##contentId##","contentType": "video/mp4","metadata": {"title": "##title##","subtitle": "##subtitle##"}}}'
     };
 
     self.proto_pause = {
         "namespace": "urn:flint:org.openflint.fling.media",
-        "payload": '{"type": "PAUSE", "seq": "requestId-4"}'
+        "payload": '{"type": "PAUSE", "requestId": "requestId-4"}'
     };
 
     self.proto_play = {
         "namespace": "urn:flint:org.openflint.fling.media",
-        "payload": '{"type": "PLAY", "seq": "requestId-5"}'
+        "payload": '{"type": "PLAY", "requestId": "requestId-5"}'
     };
 };
 
