@@ -6,13 +6,12 @@
         "128": "/assets/imgs/icon-128.png",
         "64": "/assets/imgs/icon-64.png"
     },
-    "launch_path": "/index.html",
+    "launch_path": "/web-media-player-sample/index.html",
     "developer": {
         "name": "cast video",
-        "url": "http://openflint.github.io/web-media-player-sample/index.htmlg"
+        "url": "http://openflint.github.io/web-media-player-sample/index.html"
     },
     "default_locale": "en",
-    "type": "privileged",
     "permissions": {
         "systemXHR": { "description": "Required to make Ajax Calls over the Network" }
     }
