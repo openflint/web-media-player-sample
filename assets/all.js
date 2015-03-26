@@ -1,8 +1,7 @@
 "use strict"
 var sCastVideoUrl = "http://fling.matchstick.tv/droidream/samples/vlist.json",
     sVideoBase = "http://fling.matchstick.tv/droidream/samples/",
-    appUrl = "http://127.0.0.1:8080/flint/flint-player/player.html";
-//    appUrl = "http://openflint.github.io/flint-player/player.html";
+    appUrl = "http://openflint.github.io/flint-player/player.html";
 
 if (typeof String.prototype.replaceAll != 'function') {
     String.prototype.replaceAll = function (AFindText, ARepText) {
@@ -129,8 +128,8 @@ var AppManager = function (appid) {
 //        var device = new FlintDevice(deviceDesc);
 //        deviceManager = new FlintSenderManager(device, appid, true, true);
         var service = {
-            urlBase: 'http://127.0.0.1:9431',
-            host: '127.0.0.1',
+            urlBase: 'http://'+eleDongleIpInput.value+':9431',
+            host: eleDongleIpInput.value,
             appId: appid,
             useHeartbeat: true
         };
